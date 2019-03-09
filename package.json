@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "FCC-Calculator",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Freecodecamp project",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "F. John De Costa <john@eaglefox.net>",
   "dependencies": {
     "eslint": "^5.15.1",
     "gatsby": "^2.1.27",
