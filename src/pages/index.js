@@ -11,6 +11,7 @@ const IndexPage = () => (
 		<Header />
     
 <CalculatorFace />
+		
   </Layout>
 )
 
