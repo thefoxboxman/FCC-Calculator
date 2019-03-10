@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import styled from "styled-components"
 import * as math from "mathjs"
 
+const isOperator = /[*/+-]/
+const endsWithOperator = /[*/+-]$/
 
 class CalculatorFace extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class CalculatorFace extends Component {
       input: "0",
     }
   }
+
   /*Handle Operators */
   handleClear = () => this.setState({ input: "0" })
 
@@ -30,55 +33,88 @@ class CalculatorFace extends Component {
   }
 
   handleClickDecimal = () => {
-    this.setState({ input: this.state.input + "." })
-	}
-	
-	handleClickEqual = () => {
-		let answer = math.eval(this.state.input)
-		let roundedAnswer = math.round(answer, 4)
-		this.setState({ input: roundedAnswer });
-	};
+		/* find last element of string for comparison*/
+		let lastElement = this.state.input[this.state.input.length - 1]
+	/* does string include an operator */
+		let hasOperator = /[*/+-]/.test(this.state.input)
 
+		if (this.state.input.includes(".") && hasOperator){
+			this.setState({ input: this.state.input + "." })
+		}	else if (lastElement === ".") {
+			this.setState({ input: this.state.input  }) 
+		} else if (this.state.input.includes(".")){
+			this.setState({ input: this.state.input }) 
+		}else{
+	this.setState({ input: this.state.input + "." })
+	}
+}
+
+  handleClickEqual = () => {
+    var answer = math.eval(this.state.input)
+    var roundedAnswer = math.round(answer, 4)
+		this.setState({ input: this.state.input = roundedAnswer })
+		
+  }
 
   /*Handle Digits */
 
   handleClickZero = () => {
-    this.setState({ input: this.state.input + "0" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "0") })
+    } else this.setState({ input: this.state.input + "0" })
   }
 
   handleClickOne = () => {
-    this.setState({ input: this.state.input + "1" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "1") })
+    } else this.setState({ input: this.state.input + "1" })
   }
 
   handleClickTwo = () => {
-    this.setState({ input: this.state.input + "2" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "2") })
+    } else this.setState({ input: this.state.input + "2" })
   }
 
   handleClickThree = () => {
-    this.setState({ input: this.state.input + "3" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "3") })
+    } else this.setState({ input: this.state.input + "3" })
   }
 
   handleClickFour = () => {
-    this.setState({ input: this.state.input + "4" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "4") })
+    } else this.setState({ input: this.state.input + "4" })
   }
 
   handleClickFive = () => {
-    this.setState({ input: this.state.input + "5" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "5") })
+    } else this.setState({ input: this.state.input + "5" })
   }
 
   handleClickSix = () => {
-    this.setState({ input: this.state.input + "6" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "6") })
+    } else this.setState({ input: this.state.input + "6" })
   }
 
   handleClickSeven = () => {
-    this.setState({ input: this.state.input + "7" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "7") })
+    } else this.setState({ input: this.state.input + "7" })
   }
   handleClickEight = () => {
-    this.setState({ input: this.state.input + "8" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "8") })
+    } else this.setState({ input: this.state.input + "8" })
   }
 
   handleClickNine = () => {
-    this.setState({ input: this.state.input + "9" })
+    if (this.state.input[0] === "0" && this.state.input[1] != ".") {
+      this.setState({ input: (this.state.input = "9") })
+    } else this.setState({ input: this.state.input + "9" })
   }
 
   addToInput = val => {
@@ -89,7 +125,12 @@ class CalculatorFace extends Component {
     return (
       <CalculatorWrapper>
         <div class="calculator">
-          <input type="text" class="calculator-screen" id="display" value ={this.state.input} />
+          <input
+            type="text"
+            class="calculator-screen"
+            id="display"
+            value={this.state.input}
+          />
 
           <div class="calculator-keys">
             <button
@@ -259,7 +300,7 @@ const CalculatorWrapper = styled.div`
     width: 400px;
   }
 
-  #display{
+  #display {
     width: 100%;
     font-size: 3rem;
     height: 80px;
