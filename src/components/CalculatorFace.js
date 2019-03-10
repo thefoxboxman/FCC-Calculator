@@ -1,78 +1,222 @@
-import React from 'react'
+import React, {Component} from 'react'
 import styled from "styled-components"
 
-export default function CalculatorFace() {
-	return (
-    <CalculatorWrapper>
-      <div class="calculator">
-        <input type="text" class="calculator-screen" id="display" value="0" disabled />
+import {Input} from "../components/Input"
+import {Button} from "../components/Button"
 
-        <div class="calculator-keys">
-          <button type="button" class="operator" id="add" value="+">
-            +
-          </button>
-          <button type="button" class="operator" id="subtract" value="-">
-            -
-          </button>
-          <button type="button" class="operator" id="multiply" value="*">
-            &times;
-          </button>
-          <button type="button" class="operator" id="divide" value="/">
-            &divide;
-          </button>
+ class CalculatorFace extends Component {
+   constructor(props) {
+     super(props)
+     this.state = {
+       input: "0",
+     }
+   }
+/*Handle Operators */
+	 handleClear = () => this.setState({ input: "0" })
 
-          <button type="button" id="seven" value="7">
-            7
-          </button>
-          <button type="button" id="eight" value="8">
-            8
-          </button>
-          <button type="button" id="nine" value="9">
-            9
-          </button>
 
-					<button type="button" id="four" value="4">
-            4
-          </button>
-					<button type="button" id="five" value="5">
-            5
-          </button>
-					<button type="button" id="six" value="6">
-            6
-          </button>
+	 handleClickAdd = () => {
+		 this.setState({ input: this.state.input + "+" })
+	 }
 
-					<button type="button" id="one" value="1">
-            1
-          </button>
-          <button type="button" id="two"value="2">
-            2
-          </button>
-					<button type="button" id="three" value="3">
-            3
-          </button>
+	 handleClickSubtract = () => {
+		 this.setState({ input: this.state.input + "-" })
+	 }
 
-					<button type="button" id="zero" value="0">
-            0
-          </button>
-          <button type="button" class="decimal" id="decimal" value=".">
-            .
-          </button>
-          <button type="button" class="all-clear" id="clear" value="all-clear">
-            AC
-          </button>
+	 handleClickMultiply = () => {
+		 this.setState({ input: this.state.input + "*" })
+	 }
 
-          <button type="button" class="equal-sign" id="equals" value="=">
-            =
-          </button>
-        </div>
-      </div>
-    </CalculatorWrapper>
-  )
+	 handleClickDivide = () => {
+		 this.setState({ input: this.state.input + "/" })
+	 }
+
+
+
+handleClickDecimal = () => {
+	this.setState({ input: this.state.input + "." })
 }
+
+/*Handle Digits */ 
+   handleClickZero = () => {
+     this.setState({ input: this.state.input + "0" })
+   }
+
+   handleClickOne = () => {
+     this.setState({ input: this.state.input + "1" })
+   }
+
+   handleClickTwo = () => {
+     this.setState({ input: this.state.input + "2" })
+   }
+
+   handleClickThree = () => {
+     this.setState({ input: this.state.input + "3" })
+   }
+
+   handleClickFour = () => {
+     this.setState({ input: this.state.input + "4" })
+   }
+
+   handleClickFive = () => {
+     this.setState({ input: this.state.input + "5" })
+   }
+
+   handleClickSix = () => {
+     this.setState({ input: this.state.input + "6" })
+   }
+
+   handleClickSeven = () => {
+     this.setState({ input: this.state.input + "7" })
+   }
+   handleClickEight = () => {
+     this.setState({ input: this.state.input + "8" })
+   }
+
+   handleClickNine = () => {
+     this.setState({ input: this.state.input + "9" })
+   }
+
+   addToInput = val => {
+     this.setState({ input: this.state.input + val })
+   }
+
+   render() {
+     return (
+       <CalculatorWrapper>
+         <div class="calculator">
+           <Input input={this.state.input} />
+
+           <div class="calculator-keys">
+             <button type="button" class="operator" id="add" value="+"
+							 onClick={this.handleClickAdd}>
+               +
+             </button>
+             <button type="button" class="operator" id="subtract" value="-"
+							 onClick={this.handleClickSubtract}>
+               -
+             </button>
+             <button type="button" class="operator" id="multiply" value="*"
+							 onClick={this.handleClickMultiply}>
+               &times;
+             </button>
+             <button type="button" class="operator" id="divide" value="/"
+							 onClick={this.handleClickDivide}>
+               &divide;
+             </button>
+
+             <button
+               type="button"
+               id="seven"
+               value="7"
+               onClick={this.handleClickSeven}
+             >
+               7
+             </button>
+             <button
+               type="button"
+               id="eight"
+               value="8"
+               onClick={this.handleClickEight}
+             >
+               8
+             </button>
+             <button
+               type="button"
+               id="nine"
+               value="9"
+               onClick={this.handleClickNine}
+             >
+               9
+             </button>
+
+             <button
+               type="button"
+               id="four"
+               value="4"
+               onClick={this.handleClickFour}
+             >
+               4
+             </button>
+             <button
+               type="button"
+               id="five"
+               value="5"
+               onClick={this.handleClickFive}
+             >
+               5
+             </button>
+             <button
+               type="button"
+               id="six"
+               value="6"
+               onClick={this.handleClickSix}
+             >
+               6
+             </button>
+
+             <button
+               type="button"
+               id="one"
+               value="1"
+               onClick={this.handleClickOne}
+             >
+               1
+             </button>
+             <button
+               type="button"
+               id="two"
+               value="2"
+               onClick={this.handleClickTwo}
+             >
+               2
+             </button>
+             <button
+               type="button"
+               id="three"
+               value="3"
+               onClick={this.handleClickThree}
+             >
+               3
+             </button>
+
+             <button
+               type="button"
+               id="zero"
+               value="0"
+               onClick={this.handleClickZero}
+             >
+               0
+             </button>
+             <button type="button" class="decimal" id="decimal" value="."
+							 onClick={this.handleClickDecimal}>
+               .
+             </button>
+             <button
+               type="button"
+               class="all-clear"
+               id="clear"
+               value="all-clear"
+               onClick={this.handleClear}
+             >
+               AC
+             </button>
+
+             <button type="button" class="equal-sign" id="equals" value="="
+							 onClick={this.handleClickEqual}>
+               =
+             </button>
+           </div>
+         </div>
+       </CalculatorWrapper>
+     )
+   }
+ }
+export default CalculatorFace;
 
 const CalculatorWrapper = styled.div`
   .calculator {
-    border: 1px solid #ccc;
+    border: 3px solid #ccc;
     border-radius: 5px;
     position: absolute;
     top: 50%;
@@ -119,7 +263,9 @@ const CalculatorWrapper = styled.div`
   }
 
   .operator {
-    color: #337cac;
+    background-color: #f0595f;
+    border-color: #b0353a;
+    color: #fff;
   }
 
   .all-clear {
