@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import styled from "styled-components"
 import * as math from "mathjs"
 
-const isOperator = /[*/+-]/
+
 const endsWithOperator = /[*/+-]$/
 
 class CalculatorFace extends Component {
@@ -17,20 +17,45 @@ class CalculatorFace extends Component {
   handleClear = () => this.setState({ input: "0" })
 
   handleClickAdd = () => {
-    this.setState({ input: this.state.input + "+" })
+		let isLastAnOperator = /[*/+-]$/.test(this.state.input)
+if (isLastAnOperator){
+	let stepBackOne = this.state.input.slice(0, -1)
+	this.setState({ input: this.state.input = stepBackOne })
+	this.setState({ input: this.state.input + "+" })
+} else {
+		this.setState({ input: this.state.input + "+" })
+}
   }
 
-  handleClickSubtract = () => {
-    this.setState({ input: this.state.input + "-" })
-  }
+	handleClickSubtract = () => {
+		let isLastAnOperator = /[*/+-]$/.test(this.state.input)
+		if (isLastAnOperator) {
+			let stepBackOne = this.state.input.slice(0, -1)
+			this.setState({ input: this.state.input = stepBackOne })
+			this.setState({ input: this.state.input + "-" })
+		} else {
+			this.setState({ input: this.state.input + "-" })
+		}}
 
-  handleClickMultiply = () => {
-    this.setState({ input: this.state.input + "*" })
-  }
+	handleClickMultiply = () => {
+		let isLastAnOperator = /[*/+-]$/.test(this.state.input)
+		if (isLastAnOperator) {
+			let stepBackOne = this.state.input.slice(0, -1)
+			this.setState({ input: this.state.input = stepBackOne })
+			this.setState({ input: this.state.input + "*" })
+		} else {
+			this.setState({ input: this.state.input + "*" })
+		}}
 
-  handleClickDivide = () => {
-    this.setState({ input: this.state.input + "/" })
-  }
+	handleClickDivide = () => {
+		let isLastAnOperator = /[*/+-]$/.test(this.state.input)
+		if (isLastAnOperator) {
+			let stepBackOne = this.state.input.slice(0, -1)
+			this.setState({ input: this.state.input = stepBackOne })
+			this.setState({ input: this.state.input + "/" })
+		} else {
+			this.setState({ input: this.state.input + "/" })
+		}}
 
   handleClickDecimal = () => {
 		/* find last element of string for comparison*/
